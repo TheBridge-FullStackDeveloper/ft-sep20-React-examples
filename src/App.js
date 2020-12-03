@@ -3,7 +3,7 @@ import Header from './Header/Header'
 import Footer from './Footer/Footer'
 
 function App() {
-  const myCompany = "ACME S.A."
+  let myCompany = "Grupo ACME, S.A.";
 
   return (
     <div className="App">
@@ -11,6 +11,7 @@ function App() {
       <main>
         <h1>Hola mundo</h1>
       </main>
+
       <Footer company={myCompany} />
     </div>
   );
