@@ -1,23 +1,35 @@
 import './App.css';
-import Header from './Header/Header'
-import Footer from './Footer/Footer'
-import { Component } from 'react/cjs/react.development';
+import Header from './Header/Header';
+import Footer from './Footer/Footer';
+import TaskList from './TaskList/TaskList';
+import React, { Component } from 'react';
 
-const AppContext = React.createContext()
-const MainPostsContext = React.createContext()
+const AppContext = React.createContext();
 
 class App extends Component {
-  constructor() {
+  constructor(props) {
+    super(props);
+
     this.state = {
-      myCompany : "Grupo ACME, S.A."
+      myCompany: "Grupo ACME, S.A.",
+      tasks: [
+        {
+          text: "Task 1"
+        },
+        {
+          text: "Task 2"
+        },
+        {
+          text: "Task 3"
+        }
+      ]
     }
   }
 
   render() {
     const contextData = {
       company: this.state.myCompany,
-      otherData: 3,
-      callbackTo: (newName) => this.setState({ myCompany: newName })
+      changeCompany: (newName) => this.setState({ myCompany: newName })
     };
 
     return (
@@ -28,11 +40,7 @@ class App extends Component {
           <main>
             <h1>Hola mundo</h1>
 
-            <MainPostsContext.Provider value="datosMain"> 
-              <MainPosts />
-            </MainPostsContext.Provider>
-
-            <SecondaryPosts />
+            <TaskList tasks={this.state.tasks} />
           </main>
         </AppContext.Provider>
 
